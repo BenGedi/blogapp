@@ -1,0 +1,59 @@
+<!-- Blog Entries Column -->
+			<section class="col-md-8" >
+				<h1 class="page-header">All Posts</h1>
+
+				<!-- Begin Post -->
+<!-- 				<ul  ng-repeat="post in postData">
+					<li>{{post.title}}</li>
+				</ul> -->
+				<article ng-repeat="post in postData">
+					<header>
+						<h2>
+							<a href="post.html">{{post.title}}</a>
+						</h2>
+
+						<p>
+							<small class="glyphicon glyphicon-user"></small>
+							by <a href="#">{{post.author}}</a>
+						</p>
+						<p>
+							<small class="glyphicon glyphicon-time"></small>
+							{{post.date | date:'medium'}}
+						</p>
+					</header>
+					<hr>
+
+					<figure>
+						<img class="img-responsive" ng-src="{{post.image}}"
+							alt="">
+					</figure>
+					<hr>
+
+					<!-- Post Description -->
+					<p>{{post.description}}</p>
+					<br>
+
+					<footer class="clearfix">
+						<p class="pull-left">
+							<b>Tags:&nbsp;</b>
+							<a href="#" class="label label-default" ng-repeat="tag in post.tags">{{tag}} </a>
+						</p>
+
+						<a class="btn btn-primary pull-right" href="post.html">
+							Read More <i class="glyphicon glyphicon-chevron-right"></i>
+						</a>
+					</footer>
+				</article>
+				<hr>
+				<!-- End of Post -->
+
+				<!-- Pager -->
+				<ul class="pager">
+					<li class="previous">
+						<a href="#">&larr; Older</a>
+					</li>
+					<li class="next">
+						<a href="#">Newer &rarr;</a>
+					</li>
+				</ul>
+			</section>

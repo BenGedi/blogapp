@@ -53,6 +53,8 @@ module.exports = function (grunt) {
 			app: {
 				files: [
 					'app/**/*',
+					'app/**/*.js',
+					'app/**/*.html',
 					'css/**/*.css',
 					'lib/**/*',
 					'index.html'

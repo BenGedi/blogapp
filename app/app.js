@@ -5,14 +5,20 @@
 
 	app.config(['$routeProvider' , function($routeProvider){
 		$routeProvider
-		.when('/', {
-			templateUrl : 'allpost.html',
-			controller : 'allpostCtrl'
+		.when('/',{
+			redirectTo: '/posts'
+		})
+		.when('/posts/:page?', {
+			templateUrl : 'app/posts/posts.view.html',
+			controller : 'PostsCtrl'
 		})
 		.when('/post', {
-			templateUrl : 'post.html',
+			templateUrl : 'app/post/post.view.html',
 			controller : 'postCtrl'
-		});
+		})
+		.otherwise({
+        	redirectTo: '/'
+      });
 	}]);
 
 }());
