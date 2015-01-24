@@ -18,7 +18,7 @@
 						</p>
 						<p>
 							<small class="glyphicon glyphicon-time"></small>
-							{{post.date | date:'medium'}}
+							Posted on: {{post.date | date:'mediumDate'}}
 						</p>
 					</header>
 					<hr>
@@ -36,7 +36,9 @@
 					<footer class="clearfix">
 						<p class="pull-left">
 							<b>Tags:&nbsp;</b>
-							<a href="#" class="label label-default" ng-repeat="tag in post.tags">{{tag}} </a>
+							<span ng-repeat="tag in post.tags">
+								<a href="#" class="btn btn-default btn-xs" role="button">{{tag}}</a>
+							</span>
 						</p>
 
 						<a class="btn btn-primary pull-right" href="post.html">
