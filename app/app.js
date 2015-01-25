@@ -37,14 +37,13 @@
 		$scope.states = navStates;
 	});
 
-	app.controller('PostsCtrl',	function ($scope, $routeParams, $location, navStates) {
-		navStates.activeTab = 'posts';
-		console.log(navStates.activeTab);
-	});
-
 	app.controller('AdminCtrl',	function ($scope, $routeParams, $location, navStates) {
 		navStates.activeTab = 'admin';
 		console.log(navStates.activeTab);
+
+		$scope.$on('$destroy', function handleDestroyEvent() {
+			navStates.activeTab = null;
+        });
 	});
 
 }());

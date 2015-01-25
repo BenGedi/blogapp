@@ -2,24 +2,29 @@
 	'use strict';
 	var app = angular.module('Blogapp');
 
-	app.controller('PostsCtrl', function ($scope, $routeParams, $location , postsService ,navStates){
+	app.controller('PostCtrl', function ($scope, $routeParams, $location , postsService ,navStates){
 
 		// console.log(postsService);
 		// console.log($routeParams.page);
 		// // console.log($location.search());
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
+
+			for(var post in $scope.postsData){
+
+				if($scope.postsData[post].title === $routeParams.title){
+					console.log($scope.postsData[post].title);
+					console.log($routeParams.title);
+					$scope.post = $scope.postsData[post];
+				}
+			}
 		})
 		.error(function(data , status){
 			console.erorr(status, data);
 		});
 
-		navStates.activeTab = 'posts';
-		console.log(navStates.activeTab);
 
-		$scope.$on('$destroy', function handleDestroyEvent() {
-			navStates.activeTab = null;
-        });
+
 	});
 
 }());
