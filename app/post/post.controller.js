@@ -4,9 +4,6 @@
 
 	app.controller('PostCtrl', function ($scope, $routeParams, $location , postsService ,navStates){
 
-		// console.log(postsService);
-		// console.log($routeParams.page);
-		// // console.log($location.search());
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
 
