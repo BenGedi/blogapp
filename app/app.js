@@ -25,25 +25,13 @@
       });
 	}]);
 
-	app.factory('navStates', function () {
-		return {
-			activeTab: null
+	app.service('urlFix', function(){
+		return function(item){
+
+			item = item.replace(/[, ]+/g ,'');
+
+			return item;
 		};
-	});
-
-	app.controller('NavCtrl', function ($scope, navStates) {
-		console.log(navStates);
-
-		$scope.states = navStates;
-	});
-
-	app.controller('AdminCtrl',	function ($scope, $routeParams, $location, navStates) {
-		navStates.activeTab = 'admin';
-		console.log(navStates.activeTab);
-
-		$scope.$on('$destroy', function handleDestroyEvent() {
-			navStates.activeTab = null;
-        });
 	});
 
 }());
