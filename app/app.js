@@ -28,7 +28,10 @@
 	app.service('urlFix', function(){
 		return function(item){
 
-			item = item.replace(/[, ]+/g ,'');
+			item = item.replace(/[ ]+/g ,'');
+			if(item.indexOf(',') > -1){
+				item = item.replace(',', '-');
+			}
 
 			return item;
 		};
