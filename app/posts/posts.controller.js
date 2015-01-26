@@ -2,11 +2,12 @@
 	'use strict';
 	var app = angular.module('Blogapp');
 
-	app.controller('PostsCtrl', function ($scope, $routeParams, $location , postsService ,navStates){
+	app.controller('PostsCtrl',
+		function ($scope, $routeParams, $location , postsService ,navStates , utils){
 
 		// console.log(postsService);
 		// console.log($routeParams.page);
-		// // console.log($location.search());
+		// console.log($location.search());
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
 		})
@@ -20,6 +21,8 @@
 		$scope.$on('$destroy', function handleDestroyEvent() {
 			navStates.activeTab = null;
         });
+		console.log(utils);
+        $scope.cleanTitle = utils.cleanTitle;
 	});
 
 }());

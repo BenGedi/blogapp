@@ -9,7 +9,7 @@
 				<article ng-repeat="post in postsData">
 					<header>
 						<h2>
-							<a href="#/post/{{post.title}}">{{post.title}}</a>
+							<a href="#/post/{{cleanTitle(post.title)}}">{{post.title}}</a>
 						</h2>
 
 						<p>

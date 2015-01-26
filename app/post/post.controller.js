@@ -2,25 +2,25 @@
 	'use strict';
 	var app = angular.module('Blogapp');
 
-	app.controller('PostCtrl', function ($scope, $routeParams, $location , postsService ,navStates,urlFix){
-
-		$routeParams.title = urlFix($routeParams.title);
-
+	app.controller('PostCtrl', function ($scope, $routeParams, $location , postsService ,navStates, utils){
 
 		postsService.success(function(data,status){
+
 			$scope.postsData = data.posts;
 
 			for(var post in $scope.postsData){
+
 				if ($scope.postsData.hasOwnProperty(post)){
-					var postObj = urlFix($scope.postsData[post].title);
-					if(postObj === $routeParams.title){
-						// console.log(postObj);
+
+					var postTitle = utils.cleanTitle($scope.postsData[post].title);
+
+					if(postTitle === $routeParams.title){
+
 						$scope.post = $scope.postsData[post];
 					}
 				}
 			}
 
-			$scope.$apply( $location.path( '/post/'+ $routeParams.title) );
 		})
 		.error(function(data , status){
 			console.erorr(status, data);
