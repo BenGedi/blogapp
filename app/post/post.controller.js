@@ -4,8 +4,10 @@
 
 	app.controller('PostCtrl', function ($scope, $routeParams, $location , postsService ,navStates, utils){
 
+		//postsService return the posts data JSON
 		postsService.success(function(data,status){
 
+			// initialize the scope with the JSON data object
 			$scope.postsData = data.posts;
 
 			for(var post in $scope.postsData){
