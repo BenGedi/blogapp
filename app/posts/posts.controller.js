@@ -10,6 +10,20 @@
 		// console.log($location.search());
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
+			var urlParam = $location.search();
+
+			if(Object.keys(urlParam).length>0){
+				var postsParam = [];
+				utils.addPostsByParam(urlParam,$scope.postsData,postsParam);
+				if(postsParam.length>0){
+					$scope.postsData = postsParam;
+				}
+				// parameter is invalide
+				else{
+					$location.path('#/posts');
+				}
+			}
+
 		})
 		.error(function(data , status){
 			console.erorr(status, data);
@@ -21,7 +35,6 @@
 		$scope.$on('$destroy', function handleDestroyEvent() {
 			navStates.activeTab = null;
         });
-		console.log(utils);
         $scope.cleanTitle = utils.cleanTitle;
 	});
 

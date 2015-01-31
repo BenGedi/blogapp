@@ -59,10 +59,10 @@
 		<div class="row">
 
 			<!-- Blog all posts -->
-			<ng-view ng-clock autoscroll="true"></ng-view>
+			<ng-view ng-cloak autoscroll="true"></ng-view>
 
 			<!-- Blog Sidebar Widgets Column -->
-			<aside class="col-md-4">
+			<aside class="col-md-4" ng-cloak>
 
 				<!-- Blog Search Well -->
 				<div class="well">
@@ -79,74 +79,46 @@
 				</div>
 
 				<!-- Blog Categories Well -->
-				<div class="well">
+				<div class="well" ng-controller="SidebarController">
 					<h3>Filter Posts</h3>
 
 					<div class="list-group">
-						<a href="#" class="list-group-item active">
-							<span class="badge">8</span>
+						<a href="#/posts" class="list-group-item active">
+							<span class="badge">{{allPostCount}}</span>
 							Show All Posts
 						</a>
 					</div>
 
 					<h4><small class="glyphicon glyphicon-tag"></small> Category</h4>
 					<div class="list-group">
-						<a href="#" class="list-group-item">
-							<span class="badge">6</span>
-							JavaScript
-						</a>
-						<a href="#" class="list-group-item">
-							<span class="badge">4</span>
-							AngularJS
-						</a>
-						<a href="#" class="list-group-item">
-							<span class="badge">2</span>
-							Grunt
-						</a>
-						<a href="#" class="list-group-item">
-							<span class="badge">2</span>
-							Tools
-						</a>
-						<a href="#" class="list-group-item">
-							<span class="badge">2</span>
-							jQuery
+						<a href="#/posts?category={{tag.name}}" class="list-group-item" ng-repeat="tag in tags | orderBy: 'tag.count'">
+							<span class="badge">{{tag.count}}</span>
+							{{tag.name}}
 						</a>
 					</div>
 
 					<h4><small class="glyphicon glyphicon-user"></small> Author</h4>
 					<div class="list-group">
-						<a href="#" class="list-group-item">
-							<span class="badge">4</span>
-							Ilan Cohen
-						</a>
-						<a href="#" class="list-group-item">
-							<span class="badge">2</span>
-							Alex Ilyaev
-						</a>
-						<a href="#" class="list-group-item">
-							<span class="badge">2</span>
-							Amit Choukroun
+						<a href="#/posts?author={{author.name}}" class="list-group-item" ng-repeat="author in authors | orderBy: 'author.count'">
+							<span class="badge">{{author.count}}</span>
+							{{author.name}}
 						</a>
 					</div>
 
 					<h4><small class="glyphicon glyphicon-time"></small> Month</h4>
 					<div class="list-group">
-						<span href="#" class="list-group-item disabled">
-							2015
-						</span>
-						<a href="#" class="list-group-item">
-							<span class="badge">4</span>
-							January
-						</a>
-						<span href="#" class="list-group-item disabled">
-							2014
-						</span>
-						<a href="#" class="list-group-item">
-							<span class="badge">4</span>
-							December
-						</a>
+						<div ng-repeat="date in dates | orderBy:'parseInt(date.name)'">
+							<span href="#" class="list-group-item disabled">
+								{{date.name}}
+							</span>
+							<a href="#/posts?date={{date.months.name}}" class="list-group-item">
+								<span class="badge">{{date.months.count}}</span>
+								{{date.months.name}}
+							</a>
+						</div>
 					</div>
 				</div>
+				<!-- /.well -->
 			</aside>
 
 		</div>
@@ -183,6 +155,7 @@
 	<script src="app/post/post.controller.js"></script>
 	<script src="app/admin/admin.controller.js"></script>
 	<script src="app/common/utils.factory.js"></script>
+	<script src="app/sidebar/sidebar.controller.js"></script>
 
 </body>
 </html>
