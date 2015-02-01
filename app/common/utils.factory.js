@@ -59,7 +59,7 @@
 					}
 					else if(paramObj.author){
 						jsonData.forEach(function(post){
-							console.log(this.cleanTitle(post.author));
+							// console.log(this.cleanTitle(post.author));
 							if(post.author === paramObj.author){
 								storageData.push(post);
 							}

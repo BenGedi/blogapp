@@ -6,7 +6,7 @@
 <!-- 				<ul  ng-repeat="post in postData">
 					<li>{{post.title}}</li>
 				</ul> -->
-				<article ng-repeat="post in postsData">
+				<article ng-repeat="post in postsData | limitTo:quantity | orderBy: $filter('date')(post.date,'yyyy')" >
 					<header>
 						<h2>
 							<a href="#/post/{{cleanTitle(post.title)}}">{{post.title}}</a>
@@ -14,7 +14,7 @@
 
 						<p>
 							<small class="glyphicon glyphicon-user"></small>
-							by <a href="#">{{post.author}}</a>
+							by <a href="#/posts?author={{post.author}}">{{post.author}}</a>
 						</p>
 						<p>
 							<small class="glyphicon glyphicon-time"></small>

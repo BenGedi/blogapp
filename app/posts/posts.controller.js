@@ -4,10 +4,7 @@
 
 	app.controller('PostsCtrl',
 		function ($scope, $routeParams, $location , postsService ,navStates , utils){
-
-		// console.log(postsService);
-		// console.log($routeParams.page);
-		// console.log($location.search());
+		console.log($routeParams.page);
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
 			var urlParam = $location.search();
@@ -30,8 +27,7 @@
 		});
 
 		navStates.activeTab = 'posts';
-		console.log(navStates.activeTab);
-
+		$scope.quantity = 3;
 		$scope.$on('$destroy', function handleDestroyEvent() {
 			navStates.activeTab = null;
         });
