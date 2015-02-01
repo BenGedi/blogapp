@@ -29,6 +29,7 @@
 		});
 
 
+		$scope.cleanTitle = utils.cleanTitle;
 
 	});
 

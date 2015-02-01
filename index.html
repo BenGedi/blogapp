@@ -99,7 +99,7 @@
 
 					<h4><small class="glyphicon glyphicon-user"></small> Author</h4>
 					<div class="list-group">
-						<a href="#/posts?author={{author.name}}" class="list-group-item" ng-repeat="author in authors | orderBy: 'author.count'">
+						<a href="#/posts?author={{cleanTitle(author.name)}}" class="list-group-item" ng-repeat="author in authors | orderBy: 'author.count'">
 							<span class="badge">{{author.count}}</span>
 							{{author.name}}
 						</a>

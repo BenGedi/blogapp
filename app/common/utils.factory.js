@@ -8,12 +8,12 @@
 
 			cleanTitle: function(title){
 
-				title = title.replace(/[ ]+/g ,'');
+				// title = title.replace(/[ ]+/g ,'-');
 
-				if(title.indexOf(',') > -1){
-					title = title.replace(',', '-');
-				}
-
+				// if(title.indexOf(',') > -1){
+				// 	title = title.replace(',', '-');
+				// }
+				title = title.replace(/[ \-,\,]+/g, '-');
 				return title;
 			},
 			initArrayOfObjects: function(arrObjs , data){
@@ -48,6 +48,7 @@
 			 * @param {[type]} storageData [empty array]
 			 */
 			addPostsByParam: function(paramObj ,jsonData, storageData){
+				var that = this;
 				if(paramObj.category){
 					jsonData.forEach(function(post){
 
@@ -59,8 +60,8 @@
 				}
 				else if(paramObj.author){
 					jsonData.forEach(function(post){
-						// console.log(this.cleanTitle(post.author));
-						if(post.author === paramObj.author){
+
+						if(that.cleanTitle(post.author) === paramObj.author){
 							storageData.push(post);
 						}
 					});
