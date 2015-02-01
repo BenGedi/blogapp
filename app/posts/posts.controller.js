@@ -4,14 +4,18 @@
 
 	app.controller('PostsCtrl',
 		function ($scope, $routeParams, $location , postsService ,navStates , utils){
-		console.log($routeParams.page);
+
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
 			var urlParam = $location.search();
 
+			// if url has a parameter
 			if(Object.keys(urlParam).length>0){
 				var postsParam = [];
+
+				// initialize postsParam with post accordingly to the parameter
 				utils.addPostsByParam(urlParam,$scope.postsData,postsParam);
+
 				if(postsParam.length>0){
 					$scope.postsData = postsParam;
 				}
@@ -20,7 +24,6 @@
 					$location.path('#/posts');
 				}
 			}
-
 		})
 		.error(function(data , status){
 			console.erorr(status, data);

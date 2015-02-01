@@ -18,11 +18,12 @@
 			},
 			initArrayOfObjects: function(arrObjs , data){
 				var newObj;
-				// initialize the authors array with author objects
+
 				if(arrObjs.length !== 0){
 
-					// pos returns the index of the object in authors array by the data name
+					// pos returns the index of the object in arrObjs array by the data name
 					var pos = arrObjs.map(function(e) { return e.name; }).indexOf(data);
+
 					// if exist then update the counter
 					if (pos > -1 ){
 						arrObjs[pos].count++;
@@ -47,39 +48,37 @@
 			 * @param {[type]} storageData [empty array]
 			 */
 			addPostsByParam: function(paramObj ,jsonData, storageData){
+				if(paramObj.category){
+					jsonData.forEach(function(post){
 
-					if(paramObj.category){
-						jsonData.forEach(function(post){
+						if(post.tags.indexOf(paramObj.category) > -1){
+							storageData.push(post);
+						}
+					});
+					return;
+				}
+				else if(paramObj.author){
+					jsonData.forEach(function(post){
+						// console.log(this.cleanTitle(post.author));
+						if(post.author === paramObj.author){
+							storageData.push(post);
+						}
+					});
+					return;
+				}
+				else if(paramObj.date){
+					jsonData.forEach(function(post){
 
-							if(post.tags.indexOf(paramObj.category) > -1){
-								storageData.push(post);
-							}
-						});
-						return;
-					}
-					else if(paramObj.author){
-						jsonData.forEach(function(post){
-							// console.log(this.cleanTitle(post.author));
-							if(post.author === paramObj.author){
-								storageData.push(post);
-							}
-						});
-						return;
-					}
-					else if(paramObj.date){
-						jsonData.forEach(function(post){
-
-							if(filter('date')(post.date,'MMMM') === paramObj.date){
-								storageData.push(post);
-							}
-						});
-						return;
-					}
-					else{
-						storageData = jsonData;
-						return;
-					}
-
+						if(filter('date')(post.date,'MMMM') === paramObj.date){
+							storageData.push(post);
+						}
+					});
+					return;
+				}
+				else{
+					storageData = jsonData;
+					return;
+				}
 			}
 		};
 
