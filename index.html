@@ -54,7 +54,7 @@
 	</nav>
 
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" >
 
 		<div class="row">
 
@@ -62,24 +62,26 @@
 			<ng-view ng-cloak autoscroll="true"></ng-view>
 
 			<!-- Blog Sidebar Widgets Column -->
-			<aside class="col-md-4" ng-cloak>
+			<aside class="col-md-4" ng-cloak ng-controller="SidebarController">
 
 				<!-- Blog Search Well -->
-				<div class="well">
+				<div  class="well">
 					<h4>Search</h4>
-					<div class="input-group">
-						<input type="text" class="form-control">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<span class="glyphicon glyphicon-search"></span>
-						</button>
-						</span>
-					</div>
+					<form ng-submit="search(searchInput)">
+						<div class="input-group">
+							<input type="text" class="form-control" ng-model="searchInput">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									<span class="glyphicon glyphicon-search"></span>
+							</button>
+							</span>
+						</div>
+					</form>
 					<!-- /.input-group -->
 				</div>
 
 				<!-- Blog Categories Well -->
-				<div class="well" ng-controller="SidebarController">
+				<div class="well">
 					<h3>Filter Posts</h3>
 
 					<div class="list-group">
@@ -152,6 +154,7 @@
 	<script src="app/nav/nav.factory.js"></script>
 	<script src="app/posts/posts.controller.js"></script>
 	<script src="app/posts/posts.service.js"></script>
+	<script src="app/posts/posts.limit.filter.js"></script>
 	<script src="app/post/post.controller.js"></script>
 	<script src="app/admin/admin.controller.js"></script>
 	<script src="app/common/utils.factory.js"></script>

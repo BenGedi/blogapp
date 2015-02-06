@@ -49,6 +49,7 @@
 			 */
 			addPostsByParam: function(paramObj ,jsonData, storageData){
 				var that = this;
+				console.log(paramObj);
 				if(paramObj.category){
 					jsonData.forEach(function(post){
 
@@ -58,7 +59,7 @@
 					});
 					return;
 				}
-				else if(paramObj.author){
+				if(paramObj.author){
 					jsonData.forEach(function(post){
 
 						if(that.cleanTitle(post.author) === paramObj.author){
@@ -67,7 +68,7 @@
 					});
 					return;
 				}
-				else if(paramObj.date){
+				if(paramObj.date){
 					jsonData.forEach(function(post){
 
 						if(filter('date')(post.date,'MMMM') === paramObj.date){
@@ -76,10 +77,8 @@
 					});
 					return;
 				}
-				else{
 					storageData = jsonData;
 					return;
-				}
 			}
 		};
 

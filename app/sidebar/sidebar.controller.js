@@ -5,7 +5,10 @@
 	app.controller('SidebarController',
 		function ($scope, $routeParams, $location , postsService ,utils,$filter){
 
-
+		$scope.search = function(query){
+			$location.search('');
+			$location.search('search',query);
+		};
 		//postsService return the posts data JSON
 		postsService.success(function(data,status){
 

@@ -6,7 +6,10 @@
 <!-- 				<ul  ng-repeat="post in postData">
 					<li>{{post.title}}</li>
 				</ul> -->
-				<article ng-repeat="post in postsData | limitTo:quantity | orderBy: $filter('date')(post.date,'yyyy')" >
+				<article ng-repeat="post in postsData
+									| filter: searchInput
+									| postsLimit:quantity:pageNum
+									| orderBy: '-date'" >
 					<header>
 						<h2>
 							<a href="#/post/{{cleanTitle(post.title)}}">{{post.title}}</a>
@@ -51,11 +54,12 @@
 
 				<!-- Pager -->
 				<ul class="pager">
-					<li class="previous">
-						<a href="#">&larr; Older</a>
+				{{pageNum}}
+					<li class="previous" ng-hide="pageNum <= (postsData.length / 3)">
+						<a href="#/posts/{{pageNum + 1}}{{queryParams}}">&larr; Older</a>
 					</li>
-					<li class="next">
-						<a href="#">Newer &rarr;</a>
+					<li class="next" ng-hide="pageNum == 1">
+						<a href="#/posts/{{pageNum - 1}}{{queryParams}}">Newer &rarr;</a>
 					</li>
 				</ul>
 			</section>

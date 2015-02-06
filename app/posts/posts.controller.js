@@ -5,6 +5,15 @@
 	app.controller('PostsCtrl',
 		function ($scope, $routeParams, $location , postsService ,navStates , utils){
 
+		$scope.pageNum = parseInt($routeParams.page,10) || 1;
+
+		console.log($scope.pageNum);
+		var url  = $location.url();
+
+		$scope.queryParams = (url.indexOf('?')> -1) ? url.slice(url.indexOf('?')) : '';
+
+		$scope.searchInput = $location.search().search;
+
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
 			var urlParam = $location.search();
@@ -20,9 +29,9 @@
 					$scope.postsData = postsParam;
 				}
 				// parameter is invalide
-				else{
-					$location.path('#/posts');
-				}
+				// else{
+				// 	$location.path('#/posts');
+				// }
 			}
 		})
 		.error(function(data , status){
