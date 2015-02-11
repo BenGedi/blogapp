@@ -8,27 +8,37 @@
 
 			cleanTitle: function(title){
 
-				// title = title.replace(/[ ]+/g ,'-');
-
-				// if(title.indexOf(',') > -1){
-				// 	title = title.replace(',', '-');
-				// }
 				title = title.replace(/[ \-,\,]+/g, '-');
 				return title;
 			},
+			isArray: function (obj) {
+			    return Object.prototype.toString.call(obj) === '[object Array]';
+			},
+			getObjIndexByName : function (arr, value) {
+			    for (var i = 0; i < arr.length; i++) {
+			        if (arr[i].name === value) {
+			            return i;
+			        }
+			    }
+			},
 			initArrayOfObjects: function(arrObjs , data){
-				var newObj;
+				var that= this;
+				var	newObj;
+
+				console.log('arrobjs',arrObjs);
 
 				if(arrObjs.length !== 0){
 
-					// pos returns the index of the object in arrObjs array by the data name
-					var pos = arrObjs.map(function(e) { return e.name; }).indexOf(data);
+					// pos returns the index of an object in Array of Objects by the data name
+
+					var pos = that.getObjIndexByName(arrObjs,data);
 
 					// if exist then update the counter
 					if (pos > -1 ){
 						arrObjs[pos].count++;
 					}
 					else{
+
 						newObj = {'name' : data , 'count' : 1 };
 						arrObjs.push(newObj);
 					}

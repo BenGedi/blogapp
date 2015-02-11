@@ -7,9 +7,10 @@
 					<li>{{post.title}}</li>
 				</ul> -->
 				<article ng-repeat="post in postsData
+									| orderBy: '-date'
 									| filter: searchInput
 									| postsLimit:quantity:pageNum
-									| orderBy: '-date'" >
+									">
 					<header>
 						<h2>
 							<a href="#/post/{{cleanTitle(post.title)}}">{{post.title}}</a>
@@ -17,7 +18,7 @@
 
 						<p>
 							<small class="glyphicon glyphicon-user"></small>
-							by <a href="#/posts?author={{post.author}}">{{post.author}}</a>
+							by <a href="#/posts?author={{cleanTitle(post.author)}}">{{post.author}}</a>
 						</p>
 						<p>
 							<small class="glyphicon glyphicon-time"></small>
@@ -40,7 +41,7 @@
 						<p class="pull-left">
 							<b>Tags:&nbsp;</b>
 							<span ng-repeat="tag in post.tags">
-								<a href="#" class="btn btn-default btn-xs" role="button">{{tag}}</a>
+								<a href="#/posts?category={{cleanTitle(tag)}}" class="btn btn-default btn-xs" role="button">{{tag}}</a>
 							</span>
 						</p>
 

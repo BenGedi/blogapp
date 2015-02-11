@@ -4,7 +4,6 @@
 
 	app.controller('SidebarController',
 		function ($scope, $routeParams, $location , postsService ,utils,$filter){
-
 		$scope.search = function(query){
 			$location.search('');
 			$location.search('search',query);
@@ -16,16 +15,16 @@
 			$scope.postsData = data.posts;
 
 			// Object to storage and count the amonut of tags in the post data json
-			var tags = [],authors=[],months=[],years =[],allPostCounter=0;
+			var tags = [],authors=[],months=[],years =[];
 
-			$scope.postsData.forEach(function(post){
+			data.posts.forEach(function(post){
 
 				// initialize the tags array with tag objects
-				for(var i=0 ; i< post.tags.length ;i++){
-					utils.initArrayOfObjects(tags, post.tags[i]);
-				}
+					for (var i = 0; i < post.tags.length; i++) {
+						utils.initArrayOfObjects(tags, post.tags[i]);
+					}
 
-				// initialize the authors array with author objects
+				//initialize the authors array with author objects
 				utils.initArrayOfObjects(authors, post.author);
 
 				var year = $filter('date')(post.date,'yyyy');
@@ -44,14 +43,13 @@
 				years[i].months = months[i];
 		    }
 
-		    for (var j = 0; j < tags.length; j++) {
-		    	allPostCounter+=tags[j].count;
-		    }
-		    $scope.allPostCount = allPostCounter;
+
+		    $scope.allPostCount = $scope.postsData.length;
 		    $scope.dates = years;
 			$scope.tags = tags;
 			$scope.authors = authors;
 			$scope.cleanTitle = utils.cleanTitle;
+			$scope.toggleObject = {item: -1};
 		})
 		.error(function(data , status){
 			console.erorr(status, data);
