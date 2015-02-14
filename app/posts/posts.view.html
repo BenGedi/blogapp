@@ -1,6 +1,6 @@
 <!-- Blog Entries Column -->
 			<section class="col-md-8" ng-cloak >
-				<h1 class="page-header">All Posts</h1>
+				<h1 class="page-header">Showing {{postsData.length}} Posts</h1>
 
 				<!-- Begin Post -->
 <!-- 				<ul  ng-repeat="post in postData">
@@ -25,13 +25,6 @@
 							Posted on: {{post.date | date:'mediumDate'}}
 						</p>
 					</header>
-					<hr>
-
-					<figure>
-						<img class="img-responsive" ng-src="{{post.image}}"
-							alt="">
-					</figure>
-					<hr>
 
 					<!-- Post Description -->
 					<p>{{post.description}}</p>
@@ -49,8 +42,8 @@
 							Read More <i class="glyphicon glyphicon-chevron-right"></i>
 						</a>
 					</footer>
+					<hr>
 				</article>
-				<hr>
 				<!-- End of Post -->
 
 				<!-- Pager -->
@@ -64,3 +57,4 @@
 					</li>
 				</ul>
 			</section>
+			<div ng-include="'app/sidebar/sidebar.view.html'"></div>

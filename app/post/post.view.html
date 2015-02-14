@@ -21,14 +21,9 @@
 							</span>
 						</p>
 					</header>
-					<hr>
 
-					<figure>
-						<img class="img-responsive" src="http://placehold.it/900x300"
-							alt="">
-					</figure>
-					<hr>
-
-					<!-- Post Content -->
-					<ng-include	src="post.source"></ng-include>
-
+					<!-- <ng-include	src="post.htmlPath"></ng-include> -->
+					<div ng-bind-html="postHtml"></div>
+				</article>
+			</section>
+			<div ng-include="'app/sidebar/sidebar.view.html'"></div>

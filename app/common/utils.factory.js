@@ -25,7 +25,7 @@
 				var that= this;
 				var	newObj;
 
-				console.log('arrobjs',arrObjs);
+				// console.log('arrobjs',arrObjs);
 
 				if(arrObjs.length !== 0){
 

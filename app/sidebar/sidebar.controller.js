@@ -1,13 +1,30 @@
 (function () {
 	'use strict';
-	var app = angular.module('Blogapp');
+	var app = angular.module('Blogapp').value('$anchorScroll', angular.noop);
 
 	app.controller('SidebarController',
-		function ($scope, $routeParams, $location , postsService ,utils,$filter){
+		function ($scope, $routeParams, $location ,navStates, postsService ,utils,$filter,$rootScope){
+
+		$scope.states = navStates;
+
 		$scope.search = function(query){
 			$location.search('');
 			$location.search('search',query);
 		};
+
+		$rootScope.$on('$routeChangeSuccess', function (e, curr, prev) {
+		    console.log(curr.params);
+		    var param;
+
+		    $.each(curr.params , function(key,val){
+		    	param = val;
+		    });
+
+		    console.log(param);
+		    $scope.param = param;
+		});
+
+
 		//postsService return the posts data JSON
 		postsService.success(function(data,status){
 

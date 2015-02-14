@@ -41,7 +41,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li ng-class="{active: states.activeTab == 'posts'}">
-						<a href="#/posts">All Posts</a>
+						<a href="#/posts">Posts</a>
 					</li>
 					<li ng-class="{active: states.activeTab == 'admin'}">
 						<a href="#/admin">Admin</a>
@@ -61,67 +61,6 @@
 			<!-- Blog all posts -->
 			<ng-view ng-cloak autoscroll="true"></ng-view>
 
-			<!-- Blog Sidebar Widgets Column -->
-			<aside class="col-md-4" ng-cloak ng-controller="SidebarController">
-
-				<!-- Blog Search Well -->
-				<div  class="well">
-					<h4>Search</h4>
-					<form ng-submit="search(searchInput)">
-						<div class="input-group">
-							<input type="text" class="form-control" ng-model="searchInput">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="submit">
-									<span class="glyphicon glyphicon-search"></span>
-							</button>
-							</span>
-						</div>
-					</form>
-					<!-- /.input-group -->
-				</div>
-
-				<!-- Blog Categories Well -->
-				<div class="well">
-					<h3>Filter Posts</h3>
-
-					<div class="list-group">
-						<a href="#/posts" class="list-group-item active">
-							<span class="badge">{{allPostCount}}</span>
-							Show All Posts
-						</a>
-					</div>
-
-					<h4><small class="glyphicon glyphicon-tag"></small> Category</h4>
-					<div class="list-group">
-						<a href="#/posts?category={{tag.name}}" class="list-group-item" ng-repeat="tag in tags | orderBy: 'tag.count'">
-							<span class="badge">{{tag.count}}</span>
-							{{tag.name}}
-						</a>
-					</div>
-
-					<h4><small class="glyphicon glyphicon-user"></small> Author</h4>
-					<div class="list-group">
-						<a href="#/posts?author={{cleanTitle(author.name)}}" class="list-group-item" ng-repeat="author in authors | orderBy: 'author.count'">
-							<span class="badge">{{author.count}}</span>
-							{{author.name}}
-						</a>
-					</div>
-
-					<h4><small class="glyphicon glyphicon-time"></small> Month</h4>
-					<div class="list-group">
-						<div ng-repeat="date in dates | orderBy:'parseInt(date.name)'">
-							<span href="#" class="list-group-item disabled">
-								{{date.name}}
-							</span>
-							<a href="#/posts?date={{date.months.name}}" class="list-group-item">
-								<span class="badge">{{date.months.count}}</span>
-								{{date.months.name}}
-							</a>
-						</div>
-					</div>
-				</div>
-				<!-- /.well -->
-			</aside>
 
 		</div>
 		<!-- /.row -->
@@ -145,8 +84,10 @@
 	<!-- Libraries -->
 	<script src="lib/js/jquery.min.js"></script>
 	<script src="lib/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.10/angular.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.10/angular-route.min.js"></script>
+	<script src="lib/js/marked.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.9/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.9/angular-route.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.9/angular-sanitize.min.js"></script>
 
 	<!-- App -->
 	<script src="app/app.js"></script>
