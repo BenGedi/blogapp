@@ -1,0 +1,72 @@
+<!-- Blog Sidebar Widgets Column -->
+<aside class="col-md-4" ng-cloak ng-controller="SidebarController">
+
+	<!-- Blog Search Well -->
+	<div  class="well">
+		<h4>Search</h4>
+		<form ng-submit="search(searchInput)">
+			<div class="input-group">
+				<input type="text" class="form-control" ng-model="searchInput">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="submit">
+						<span class="glyphicon glyphicon-search"></span>
+				</button>
+				</span>
+			</div>
+		</form>
+		<!-- /.input-group -->
+	</div>
+
+	<!-- Blog Categories Well -->
+	<div class="well">
+		<h3>Filter Posts</h3>
+
+		<div class="list-group">
+			<a
+				href="#/{{states.activeTab}}"
+				class="list-group-item"
+				ng-class="{'active' : param === tag.name}"
+			>
+				<span class="badge">{{allPostCount}}</span>
+				Show All Posts
+			</a>
+		</div>
+
+		<h4><small class="glyphicon glyphicon-tag"></small> Category</h4>
+		<div class="list-group">
+			<a
+				href="#/{{states.activeTab}}?category={{tag.name}}"
+				ng-repeat="tag in tags | orderBy: 'tag.count'"
+				class="list-group-item"
+				ng-class="{'active' : param == 'Grunt'}"
+			>
+				{{param}}
+				<span class="badge">{{tag.count}}</span>
+				{{tag.name}}
+			</a>
+		</div>
+
+		<h4><small class="glyphicon glyphicon-user"></small> Author</h4>
+		<div class="list-group">
+			<a href="#/{{states.activeTab}}?author={{cleanTitle(author.name)}}"
+				class="list-group-item" ng-repeat="author in authors | orderBy: 'author.count'">
+				<span class="badge">{{author.count}}</span>
+				{{author.name}}
+			</a>
+		</div>
+
+		<h4><small class="glyphicon glyphicon-time"></small> Month</h4>
+		<div class="list-group">
+			<div ng-repeat="date in dates | orderBy:'parseInt(date.name)'">
+				<span class="list-group-item disabled">
+					{{date.name}}
+				</span>
+				<a href="#/{{states.activeTab}}?date={{date.months.name}}" class="list-group-item">
+					<span class="badge">{{date.months.count}}</span>
+					{{date.months.name}}
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- /.well -->
+</aside>
