@@ -5,24 +5,20 @@
 	app.controller('SidebarController',
 		function ($scope, $routeParams, $location ,navStates, postsService ,utils,$filter,$rootScope){
 
-		$scope.states = navStates;
-
 		$scope.search = function(query){
-			$location.search('');
-			$location.search('search',query);
+			if(query === '' || query === ' '){
+
+				//remove the parameter form the url
+				delete $location.$$search.search;
+				// update the url path and render the page
+        		$location.$$compose();
+			}
+			else{
+				$location.search('');
+				$location.search('search',query);
+			}
 		};
 
-		$rootScope.$on('$routeChangeSuccess', function (e, curr, prev) {
-		    console.log(curr.params);
-		    var param;
-
-		    $.each(curr.params , function(key,val){
-		    	param = val;
-		    });
-
-		    console.log(param);
-		    $scope.param = param;
-		});
 
 
 		//postsService return the posts data JSON
@@ -55,21 +51,65 @@
 				utils.initArrayOfObjects(months, month);
 			});
 
+
+
+			// $scope.checkActive = function(objName){
+
+			// 	var param = $location.search();
+			// 	var name;
+			// 	objName= utils.cleanTitle(objName);
+
+			// 	console.log(param.category);
+			// 	if (param.category === objName){
+			// 		name = param.category;
+			// 		return  true;
+			// 	}
+			// 	if (param.author === objName){
+			// 		name = param.author;
+
+			// 		console.log('name',name);
+			// 		console.log('objName', objName);
+			// 		return  true;
+			// 	}
+			// 	if (param.date === objName){
+			// 		name = param.date;
+			// 		return  true;
+			// 	}
+			// 	if(objName === 'allpost') {
+			// 		name = 'allpost';
+			// 		console.log('allpost', objName);
+			// 		return  true;
+			// 	}
+			// };
+
 			// adding months array to years object
 			for (var i = 0; i < years.length; i++) {
 				years[i].months = months[i];
 		    }
 
-
+		    $scope.states = navStates;
 		    $scope.allPostCount = $scope.postsData.length;
+		    $scope.allPost = 'allpost';
 		    $scope.dates = years;
 			$scope.tags = tags;
 			$scope.authors = authors;
 			$scope.cleanTitle = utils.cleanTitle;
-			$scope.toggleObject = {item: -1};
 		})
 		.error(function(data , status){
 			console.erorr(status, data);
+		});
+
+		$rootScope.$on('$routeChangeSuccess', function (e, curr, prev) {
+		    console.log(curr.params);
+		    // var param;
+
+		    // $.each(curr.params , function(key,val){
+		    // 	param = val;
+		    // });
+
+		    // console.log('param',param);
+		    // $scope.param = param;
+			$scope.param = '************';
 		});
 
 

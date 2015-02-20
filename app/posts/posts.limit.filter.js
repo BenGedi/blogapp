@@ -2,12 +2,15 @@
 	'use strict';
 	var app = angular.module('Blogapp');
 
-	app.filter('postsLimit' , function(){
+	app.filter('postsLimit' , function(postsService){
+
+
+
 		return function(postsData, limit,pageNum){
 			// pageNum is One-Based...
 			var end = pageNum *limit,
 				start = end - limit;
-
+				console.log('limit.filter',postsData);
 			return postsData.slice(start,end);
 
 			// return postsData.filter(function(post,inx){

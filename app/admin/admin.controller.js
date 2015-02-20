@@ -1,11 +1,12 @@
 (function () {
-
 	'use strict';
 	var app = angular.module('Blogapp');
 
-	app.controller('AdminCtrl',	function ($scope, $routeParams, $location , postsService ,navStates , utils){
+	app.controller('AdminCtrl',
+		function ($scope, $routeParams, $location , postsService ,navStates , utils){
 
 		$scope.searchInput = $location.search().search;
+
 
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
@@ -21,17 +22,26 @@
 				if(postsParam.length>0){
 					$scope.postsData = postsParam;
 				}
-				// parameter is invalide
-				// else{
-				// 	$location.path('#/posts');
-				// }
 			}
+
+
+
 		})
 		.error(function(data , status){
 			console.erorr(status, data);
 		});
 
+		// initialize active tab state
 		navStates.activeTab = 'admin';
+
+		// initialize table default order by predicate
+		$scope.predicate = 'date';
+		$scope.reverse = false;
+
+		$scope.$watch('predicate', function() {
+			$scope.reverse = true;
+		});
+
 		$scope.$on('$destroy', function handleDestroyEvent() {
 			navStates.activeTab = null;
         });

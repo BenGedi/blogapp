@@ -7,15 +7,18 @@
 
 		$scope.pageNum = parseInt($routeParams.page,10) || 1;
 
-		console.log($scope.pageNum);
 		var url  = $location.url();
 
 		$scope.queryParams = (url.indexOf('?')> -1) ? url.slice(url.indexOf('?')) : '';
 
 		$scope.searchInput = $location.search().search;
 
+		// var promise = postsService.getPosts;
+
+		// promise.then(function(result) {
 		postsService.success(function(data,status){
 			$scope.postsData = data.posts;
+			// $scope.postsData = result.data;
 			var urlParam = $location.search();
 
 			// if url has a parameter
@@ -28,10 +31,7 @@
 				if(postsParam.length>0){
 					$scope.postsData = postsParam;
 				}
-				// parameter is invalide
-				// else{
-				// 	$location.path('#/posts');
-				// }
+				console.log('postsCrtl:postsData',$scope.postsData);
 			}
 		})
 		.error(function(data , status){

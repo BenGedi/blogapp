@@ -9,8 +9,8 @@
 				<article ng-repeat="post in postsData
 									| orderBy: '-date'
 									| filter: searchInput
-									| postsLimit:quantity:pageNum
 									">
+									<!-- | postsLimit:quantity:pageNum -->
 					<header>
 						<h2>
 							<a href="#/post/{{cleanTitle(post.title)}}">{{post.title}}</a>

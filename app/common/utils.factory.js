@@ -7,9 +7,13 @@
 		return {
 
 			cleanTitle: function(title){
-
-				title = title.replace(/[ \-,\,]+/g, '-');
-				return title;
+				if(title!== undefined){
+					title = title.replace(/[ \-,\,]+/g, '-');
+					return title;
+				}
+				else{
+					return;
+				}
 			},
 			isArray: function (obj) {
 			    return Object.prototype.toString.call(obj) === '[object Array]';
@@ -47,6 +51,7 @@
 					newObj = {'name' : data , 'count' : 1 };
 					arrObjs.push(newObj);
 				}
+				// console.log('data',data);
 			},
 			/**
 			 * adding posts by url paranmeters to an empty
@@ -59,7 +64,7 @@
 			 */
 			addPostsByParam: function(paramObj ,jsonData, storageData){
 				var that = this;
-				console.log(paramObj);
+				// console.log(paramObj);
 				if(paramObj.category){
 					jsonData.forEach(function(post){
 
