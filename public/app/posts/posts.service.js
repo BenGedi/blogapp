@@ -9,7 +9,13 @@
 		// return {
 		// 	getPosts: getPosts
 		// };
-		return $http.get('data/posts.json');
+
+		$http.get('/posts').
+		success(function(data,status){
+			console.log(data);
+		});
+
+		return $http.get('/posts');
 	});
 
 }());

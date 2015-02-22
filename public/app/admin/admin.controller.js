@@ -23,13 +23,16 @@
 					$scope.postsData = postsParam;
 				}
 			}
-
-
-
 		})
 		.error(function(data , status){
 			console.erorr(status, data);
 		});
+
+		$scope.move2edit = function(title){
+			var cleanTitle = utils.cleanTitle(title);
+			console.log('cleanTitle ',cleanTitle);
+			$location.path('/admin/edit/post/'+cleanTitle);
+		};
 
 		// initialize active tab state
 		navStates.activeTab = 'admin';

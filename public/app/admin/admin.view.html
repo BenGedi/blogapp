@@ -51,7 +51,8 @@
 									| orderBy: '-date'
 									| filter: searchInput
 									| orderBy: predicate: reverse
-									">
+									"
+							ng-click="move2edit(post.title)">
 							<th scope="row">{{$index+1}}</th>
 							<td>{{post.title}}</td>
 							<td>{{post.author}}</td>
