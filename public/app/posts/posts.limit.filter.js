@@ -10,7 +10,6 @@
 			// pageNum is One-Based...
 			var end = pageNum *limit,
 				start = end - limit;
-				console.log('limit.filter',postsData);
 			return postsData.slice(start,end);
 
 			// return postsData.filter(function(post,inx){

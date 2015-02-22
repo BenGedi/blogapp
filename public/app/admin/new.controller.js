@@ -26,7 +26,6 @@
 		//                 console.log(post);
 		//             });
 		$scope.adminState = $location.path().indexOf('new') > -1? 'new':null;
-		console.log('active tab:',$scope.adminState);
 	});
 }());
 

@@ -31,7 +31,6 @@
 				if(postsParam.length>0){
 					$scope.postsData = postsParam;
 				}
-				console.log('postsCrtl:postsData',$scope.postsData);
 			}
 		})
 		.error(function(data , status){

@@ -43,7 +43,6 @@
 		});
 
 		$scope.adminState = $location.path().indexOf('edit') > -1? 'edit':null;
-		console.log('active tab:',$scope.adminState);
 	});
 }());
 

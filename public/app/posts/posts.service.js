@@ -10,10 +10,10 @@
 		// 	getPosts: getPosts
 		// };
 
-		$http.get('/posts').
-		success(function(data,status){
-			console.log(data);
-		});
+		// $http.get('/posts').
+		// success(function(data,status){
+
+		// });
 
 		return $http.get('/posts');
 	});

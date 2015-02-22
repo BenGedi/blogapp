@@ -51,37 +51,6 @@
 				utils.initArrayOfObjects(months, month);
 			});
 
-
-
-			// $scope.checkActive = function(objName){
-
-			// 	var param = $location.search();
-			// 	var name;
-			// 	objName= utils.cleanTitle(objName);
-
-			// 	console.log(param.category);
-			// 	if (param.category === objName){
-			// 		name = param.category;
-			// 		return  true;
-			// 	}
-			// 	if (param.author === objName){
-			// 		name = param.author;
-
-			// 		console.log('name',name);
-			// 		console.log('objName', objName);
-			// 		return  true;
-			// 	}
-			// 	if (param.date === objName){
-			// 		name = param.date;
-			// 		return  true;
-			// 	}
-			// 	if(objName === 'allpost') {
-			// 		name = 'allpost';
-			// 		console.log('allpost', objName);
-			// 		return  true;
-			// 	}
-			// };
-
 			// adding months array to years object
 			for (var i = 0; i < years.length; i++) {
 				years[i].months = months[i];
@@ -99,18 +68,18 @@
 			console.erorr(status, data);
 		});
 
-		$rootScope.$on('$routeChangeSuccess', function (e, curr, prev) {
-		    console.log(curr.params);
-		    // var param;
+		// $rootScope.$on('$routeChangeSuccess', function (e, curr, prev) {
+		//     console.log(curr.params);
+		//     // var param;
 
-		    // $.each(curr.params , function(key,val){
-		    // 	param = val;
-		    // });
+		//     // $.each(curr.params , function(key,val){
+		//     // 	param = val;
+		//     // });
 
-		    // console.log('param',param);
-		    // $scope.param = param;
-			$scope.param = '************';
-		});
+		//     // console.log('param',param);
+		//     // $scope.param = param;
+		// 	$scope.param = '************';
+		// });
 
 
 
