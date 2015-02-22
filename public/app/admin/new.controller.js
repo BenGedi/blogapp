@@ -21,12 +21,6 @@
 	 //            defer.resolve(data);
 	 //        });
 
-		$scope.md2Html = function() {
-			$scope.html = $window.marked($scope.mdData);
-			// $scope.htmlSafe = $sce.trustAsHtml($scope.html);
-			// console.log('$scope.htmlSafe: ',$scope.htmlSafe);
-		};
-
 		// dataService.save(title, postObj)
 		//             .then(function (post) {
 		//                 console.log(post);

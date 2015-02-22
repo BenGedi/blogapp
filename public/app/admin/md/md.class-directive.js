@@ -3,13 +3,21 @@
 	'use strict';
 	var app = angular.module('Blogapp');
 
-	app.directive('markdown', function($window) {
+	app.directive('markdown', function($window,$sce) {
 		return {
-			restrict: 'C',
+			restrict: 'EA',
 			templateUrl:'/app/admin/md/md.template.html',
 			link: function(scope, element, attrs) {
 
-				// scope.initFromUrl(attrs.url);
+			   	scope.$watch(function() {
+					return scope.mdData;
+				}, function(){
+					var init = '';
+					if (scope.mdData) {
+						init = $sce.trustAsHtml($window.marked(scope.mdData));
+					}
+					scope.html=init;
+				});
 			}
 		};
 	});
